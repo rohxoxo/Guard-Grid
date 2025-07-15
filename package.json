@@ -1,0 +1,23 @@
+{
+  "name": "guard-grid",
+  "version": "1.0.0",
+  "description": "A software that serves Security Companies in dealing with their day to day operations.",
+  "main": "src/server.js",
+  "scripts": {
+    "dist": "npx tsc",
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "start": "node dist/server.js",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.0.13",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.13",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
