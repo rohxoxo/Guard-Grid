@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import logger from '../util/logger'
 import config from '../config/config'
 
-const connectDB = async () => {
+const connectDB = async (): Promise<void> => {
   try {
     if (!config.DATABASE_URL) {
       throw new Error('DATABASE_URL is not defined in config')

@@ -4,7 +4,7 @@ import responseMessage from '../constant/responseMessage'
 import httpError from '../util/httpError'
 
 export default {
-  self: (req: Request, res: Response, next: NextFunction) => {
+  self: (req: Request, res: Response, next: NextFunction): void => {
     try {
       // throw new Error('This is error')
       httpResponse(req, res, 200, responseMessage.SUCCESS)
