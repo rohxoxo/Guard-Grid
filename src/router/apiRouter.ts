@@ -3,6 +3,6 @@ import apiController from '../controller/apiController'
 
 const router = Router()
 
-router.route('/self').get(apiController.self)
+router.route('/self1').get(apiController.self)
 
 export default router
