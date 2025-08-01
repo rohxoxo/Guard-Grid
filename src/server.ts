@@ -7,7 +7,7 @@ const server = app.listen(config.PORT, '0.0.0.0', () => {
   logger.info(`Server listening on ${config.SERVER_URL}:${config.PORT}`)
 })
 
-;(async () => {
+;(async (): Promise<void> => {
   try {
     await connectDB()
     logger.info('Application Started', {
