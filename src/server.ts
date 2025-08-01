@@ -1,26 +1,28 @@
 import app from './app'
 import config from './config/config'
 import logger from './util/logger'
+import connectDB from './services/db'
 
-const server = app.listen(config.PORT)
+const server = app.listen(config.PORT, '0.0.0.0', () => {
+  logger.info(`Server listening on ${config.SERVER_URL}:${config.PORT}`)
+})
 
-;(() => {
+;(async () => {
   try {
+    await connectDB()
     logger.info('Application Started', {
       meta: {
         PORT: config.PORT,
-        SERVER_URL: config.SERVER_URL
+        SERVER_URL: `${config.SERVER_URL}:${config.PORT}`
       }
     })
   } catch (err) {
     logger.error('Application Error', { meta: err })
 
-    server.close((error) => {
-      if (error) {
-        logger.error('Application_Error', { meta: error })
-      }
+    // ✅ Type-safe close with callback
+    server.close(() => {
+      logger.info('Server closed due to error')
+      process.exit(1)
     })
-
-    process.exit(1)
   }
 })()

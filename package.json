@@ -9,6 +9,11 @@
     "lint:fix": "eslint . --fix",
     "dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/server.ts",
     "start": "cross-env NODE_ENV=production node dist/server.js",
+    "start:pm2": "pm2 start ecosystem.config.js --env production",
+    "stop:pm2": "pm2 stop guard-grid",
+    "restart:pm2": "pm2 restart guard-grid",
+    "logs:pm2": "pm2 logs guard-grid",
+    "status:pm2": "pm2 status",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
     "prepare": "husky"
@@ -27,6 +32,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.31.0",
     "@types/express": "^5.0.3",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^24.0.13",
     "@types/source-map-support": "^0.5.10",
     "cross-env": "^7.0.3",
@@ -44,6 +50,7 @@
   "dependencies": {
     "dotenv-flow": "^4.1.0",
     "express": "^5.1.0",
+    "mongoose": "^8.16.4",
     "source-map-support": "^0.5.21",
     "winston": "^3.17.0"
   }
