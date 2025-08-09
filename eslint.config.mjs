@@ -17,7 +17,7 @@ export default [
     }
   },
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['src/**/*.ts', 'src/**/*.tsx'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -34,6 +34,27 @@ export default [
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
       'no-console': 'error',
+      quotes: ['error', 'single', { allowTemplateLiterals: true }],
+      'prettier/prettier': 'error'
+    }
+  },
+  {
+    files: ['test/**/*.ts', 'test/**/*.tsx'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: false // Don't use TypeScript project for test files
+      }
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+      prettier: prettierPlugin
+    },
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off', // Allow any in tests
+      'no-console': 'off', // Allow console in tests
       quotes: ['error', 'single', { allowTemplateLiterals: true }],
       'prettier/prettier': 'error'
     }
