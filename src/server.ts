@@ -20,9 +20,11 @@ const server = app.listen(config.PORT, '0.0.0.0', () => {
     logger.error('Application Error', { meta: err })
 
     // ✅ Type-safe close with callback
-    server.close(() => {
-      logger.info('Server closed due to error')
-      process.exit(1)
+    server.close((error) => {
+      if (error) {
+        logger.error(`Server closed due to ${error}`, { meta: error })
+      }
     })
+    process.exit(1)
   }
 })()

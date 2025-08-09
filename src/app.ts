@@ -15,12 +15,21 @@ app.use(express.static(path.join(__dirname, '../', 'public')))
 app.use('/api/v1', router)
 
 //404 handler
-app.use((req: Request, _: Response, next: NextFunction) => {
-  try {
-    throw new Error(responseMessage.NOT_FOUND('route'))
-  } catch (err) {
-    httpError(next, err, req, 404)
-  }
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const errorMessage = responseMessage.NOT_FOUND('route')
+  const error = new Error(errorMessage)
+  res.status(404).json({
+    success: false,
+    statusCode: 404,
+    request: {
+      ip: req.ip || null,
+      meathod: req.method,
+      url: req.originalUrl
+    },
+    message: errorMessage,
+    data: null
+  })
+  httpError(next, error, req, 404)
 })
 
 //global error handler
